@@ -5,7 +5,6 @@ public class ObjectPool : Singleton<ObjectPool>
 {
     private List<Queue<GameObject>> poolList = new List<Queue<GameObject>>();
 
-
     public GameObject GetFromPool(GameObject gameObject, PoolTypeEnums poolType)
     {
         if (poolList[(int)poolType].Count > 0)
