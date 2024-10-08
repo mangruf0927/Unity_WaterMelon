@@ -10,6 +10,7 @@ public class DongleController : MonoBehaviour
     
     private Vector2 donglePosition;
     private bool isTouch;
+    private bool isDrop = false;
 
     private void Start() 
     {
@@ -47,7 +48,13 @@ public class DongleController : MonoBehaviour
     public void DropDongle(bool isTrue)
     {
         isTouch = isTrue;
+        isDrop = !isTrue;
         rigid.simulated = !isTrue; // 모든 물리 연산 중지
+    }
+
+    public bool CheckDongleDropped()
+    {
+        return isDrop;
     }
 }
 

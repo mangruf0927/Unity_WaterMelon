@@ -1,20 +1,28 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputCenter : MonoBehaviour
 {
     public InputHandler inputHandler;
-    private DongleController dongleController;
+    public DongleCenter dongleCenter;
 
-    public void SetDongleController(DongleController controller)
-    {
-        dongleController = controller;
-    }
+    private DongleController dongleController;
 
     private void Start() 
     {
-        inputHandler.OnTouchStart += StartTouch;
-        inputHandler.OnTouchStay += StayTouch;
-        inputHandler.OnTouchEnd += EndTouch;
+        dongleCenter.OnGetController += SetDongleController;
+
+        if(dongleController != null)
+        {
+            inputHandler.OnTouchStart += StartTouch;
+            inputHandler.OnTouchStay += StayTouch;
+            inputHandler.OnTouchEnd += EndTouch;
+        }
+    }
+
+    private void SetDongleController(DongleController controller)
+    {
+        dongleController = controller;
     }
 
     private void StartTouch(bool isTouch)
@@ -30,5 +38,6 @@ public class InputCenter : MonoBehaviour
     private void EndTouch(bool isTouch)
     {
         dongleController.DropDongle(isTouch);
+        dongleCenter.DropDongle();
     }
 }
