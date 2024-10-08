@@ -11,6 +11,13 @@ public class DongleController : MonoBehaviour
     private Vector2 donglePosition;
     private bool isTouch;
 
+    private void Start() 
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        dongleCollider = GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();    
+    }
+
     private void OnEnable() 
     {
         PlayAnimation(dongleLevel);
