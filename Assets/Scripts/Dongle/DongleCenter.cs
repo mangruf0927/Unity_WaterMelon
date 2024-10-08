@@ -5,6 +5,9 @@ public class DongleCenter : MonoBehaviour
 {
     [Header("동글 Prefab")]
     [SerializeField] private GameObject donglePrefab;
+    
+    [Header("동글 Group")]
+    [SerializeField] private Transform dongleGroup;
 
     private DongleFactory dongleFactory;
     private DongleController dongle;
@@ -12,24 +15,23 @@ public class DongleCenter : MonoBehaviour
     public delegate void DongleHandler(DongleController controller);
     public event DongleHandler OnGetController;
 
-    private void Awake() 
-    {
-        dongleFactory = new DongleFactory(donglePrefab);
-        dongleFactory.CreateDongle(Random.Range(0, 4));    
-    }
-
     private void Start() 
     {
+        // dongleFactory 초기화
+        dongleFactory = new DongleFactory(donglePrefab, dongleGroup);
+
         CreateNextDongle();    
     }
 
     private void CreateNextDongle()
     {
-        DongleController newDongle = dongleFactory.CreateDongle(Random.Range(0,4));
+        // 동글이 레벨을 1~4 사이에서 랜덤하게 설정
+        int randomLevel = Random.Range(1, 4);
+        DongleController newDongle = dongleFactory.CreateDongle(randomLevel);
         dongle = newDongle;
-        dongle.gameObject.SetActive(true);
 
-        OnGetController.Invoke(dongle);
+        // OnGetController 이벤트 호출
+        OnGetController?.Invoke(dongle);
 
         StartCoroutine(WaitNext(2.5f));
     }

@@ -1,21 +1,27 @@
 using UnityEngine;
 
-public class DongleFactory : MonoBehaviour
+public class DongleFactory
 {
     private GameObject donglePrefab;
-    private DongleController dongleController;
+    private Transform dongleGroup;
 
-    public DongleFactory(GameObject prefab)
+    public DongleFactory(GameObject prefab, Transform dongle)
     {
         donglePrefab = prefab;
+        dongleGroup = dongle;
     }
 
     public DongleController CreateDongle(int level)
     {
-        GameObject newDongle = Instantiate(donglePrefab);  // 새로운 동글이 생성
-        dongleController = newDongle.GetComponent<DongleController>();
-        dongleController.dongleLevel = level;  // 레벨 설정
+        GameObject newDongle = Object.Instantiate(donglePrefab, dongleGroup);  // 새로운 동글이 생성
+        newDongle.SetActive(true);
         
+        // DongleController 가져오기
+        DongleController dongleController = newDongle.GetComponent<DongleController>();  
+
+        dongleController.dongleLevel = level;  // 레벨 설정
+        dongleController.PlayAnimation(level);  // 레벨에 맞는 애니메이션 실행
+
         return dongleController;
     }
 }

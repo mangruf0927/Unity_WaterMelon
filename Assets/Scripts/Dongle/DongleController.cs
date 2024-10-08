@@ -10,23 +10,10 @@ public class DongleController : MonoBehaviour
     
     private Vector2 donglePosition;
     private bool isTouch;
-    private bool isDrop = false;
 
-    private void Start() 
+    public void PlayAnimation(int level)
     {
-        rigid = GetComponent<Rigidbody2D>();
-        dongleCollider = GetComponent<CircleCollider2D>();
-        animator = GetComponent<Animator>();    
-    }
-
-    private void OnEnable() 
-    {
-        PlayAnimation(dongleLevel);
-    }
-
-    private void PlayAnimation(int level)
-    {
-        animator.Play("level" + level);
+        animator.Play("Level" + level);
     }
 
     public void SetDonglePosition(Vector2 pos)
@@ -48,13 +35,7 @@ public class DongleController : MonoBehaviour
     public void DropDongle(bool isTrue)
     {
         isTouch = isTrue;
-        isDrop = !isTrue;
         rigid.simulated = !isTrue; // 모든 물리 연산 중지
-    }
-
-    public bool CheckDongleDropped()
-    {
-        return isDrop;
     }
 }
 
