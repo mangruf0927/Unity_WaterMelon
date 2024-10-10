@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DongleController : MonoBehaviour
 {
-    [SerializeField]    private Rigidbody2D rigid;
+    [SerializeField]    public Rigidbody2D rigid;
     [SerializeField]    private CircleCollider2D dongleCollider;
     [SerializeField]    private Animator animator;
 
@@ -12,6 +12,11 @@ public class DongleController : MonoBehaviour
     
     private Vector2 donglePosition;
     private bool isTouch = false;
+
+    private void OnEnable() 
+    {
+        isMerge = false;
+    }
 
     public void PlayAnimation(int level)
     {

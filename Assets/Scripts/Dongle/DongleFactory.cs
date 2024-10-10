@@ -1,21 +1,13 @@
 using UnityEngine;
 
-public class DongleFactory
+public static class DongleFactory
 {
-    private GameObject donglePrefab;
-    private Transform dongleGroup;
+    // private static GameObject donglePrefab;
 
-    public DongleFactory(GameObject prefab, Transform dongle)
+    public static DongleController CreateDongle(GameObject dongle, int level)
     {
-        donglePrefab = prefab;
-        dongleGroup = dongle;
-    }
+        GameObject newDongle = ObjectPool.Instance.GetFromPool(dongle, PoolTypeEnums.DONGLE);  // 새로운 동글이 생성
 
-    public DongleController CreateDongle(int level)
-    {
-        GameObject newDongle = Object.Instantiate(donglePrefab, dongleGroup);  // 새로운 동글이 생성
-        newDongle.SetActive(true);
-        
         // DongleController 가져오기
         DongleController dongleController = newDongle.GetComponent<DongleController>();  
 

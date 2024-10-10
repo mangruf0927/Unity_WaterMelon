@@ -1,9 +1,27 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPool : Singleton<ObjectPool>
 {
     private List<Queue<GameObject>> poolList = new List<Queue<GameObject>>();
+
+    private void Awake() 
+    {
+        // Enum을 순회하며 poolList에 각각의 타입에 대한 Queue 추가
+        foreach (PoolTypeEnums type in Enum.GetValues(typeof(PoolTypeEnums)))
+        {
+            poolList.Add(new Queue<GameObject>());
+        }    
+    }
+
+    public void InitializePool(int poolSize, GameObject gameObject, PoolTypeEnums poolType)
+    {
+        for(int i = 0; i < poolSize; i++)
+        {
+            poolList[(int)poolType].Enqueue(CreatePool(gameObject));
+        }
+    }
 
     public GameObject GetFromPool(GameObject gameObject, PoolTypeEnums poolType)
     {
@@ -23,7 +41,7 @@ public class ObjectPool : Singleton<ObjectPool>
 
     public GameObject CreatePool(GameObject gameObject)
     {
-        GameObject obj = Instantiate(gameObject, this.transform);
+        GameObject obj = Instantiate(gameObject);
         obj.SetActive(false);
         return obj;
     }
