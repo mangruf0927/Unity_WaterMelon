@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         Dongle newDongle = GetDongle();
         lastDongle = newDongle;
         lastDongle.gameManager = this;
-        lastDongle.level = Random.Range(0, maxLevel);
+        lastDongle.level = Random.Range(1, maxLevel);
         lastDongle.gameObject.SetActive(true);
         StartCoroutine(WaitNext());
     }

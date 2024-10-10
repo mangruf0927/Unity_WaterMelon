@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 3714564906565083524}
   - component: {fileID: 904527537976300821}
   - component: {fileID: 1782614168995906606}
+  - component: {fileID: 8492859321788477787}
   - component: {fileID: 1259296487041561442}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dongle
-  m_TagString: Dongle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,6 +177,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8492859321788477787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392450938455632116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acaff1f55b73a43ddb19dd71bf1108ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dongleController: {fileID: 1259296487041561442}
 --- !u!114 &1259296487041561442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +206,5 @@ MonoBehaviour:
   dongleCollider: {fileID: 904527537976300821}
   animator: {fileID: 1782614168995906606}
   dongleLevel: 0
+  dongleMaxLevel: 11
+  isMerge: 0

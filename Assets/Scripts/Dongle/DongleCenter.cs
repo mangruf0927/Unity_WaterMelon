@@ -6,7 +6,7 @@ public class DongleCenter : MonoBehaviour
     [Header("동글 Prefab")]
     [SerializeField] private GameObject donglePrefab;
     
-    [Header("동글 Group")]
+    [Header("동글이 Group")]
     [SerializeField] private Transform dongleGroup;
 
     private DongleFactory dongleFactory;

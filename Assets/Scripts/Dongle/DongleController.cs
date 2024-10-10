@@ -7,9 +7,11 @@ public class DongleController : MonoBehaviour
     [SerializeField]    private Animator animator;
 
     public int dongleLevel;
+    public int dongleMaxLevel;
+    public bool isMerge = false;
     
     private Vector2 donglePosition;
-    private bool isTouch;
+    private bool isTouch = false;
 
     public void PlayAnimation(int level)
     {
