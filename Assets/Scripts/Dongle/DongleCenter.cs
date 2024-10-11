@@ -7,6 +7,7 @@ public class DongleCenter : MonoBehaviour
     [SerializeField] private GameObject donglePrefab;
 
     private DongleController dongle;
+    private int nextDongleLevel;
 
     public delegate void DongleHandler(DongleController controller);
     public event DongleHandler OnGetController;
@@ -14,18 +15,22 @@ public class DongleCenter : MonoBehaviour
     private void Start() 
     {
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
+
+        nextDongleLevel = Random.Range(1, 4);
         CreateNextDongle();    
     }
 
     private void CreateNextDongle()
     {
         // 동글이 레벨을 1~4 사이에서 랜덤하게 설정
-        int randomLevel = Random.Range(1, 4);
-        DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, randomLevel);
-        newDongle.transform.position = new Vector3(0, 6.5f, 0);
+        // int randomLevel = Random.Range(1, 4);
+        DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel);
+        newDongle.transform.position = new Vector3(0, 5f, 0);
         newDongle.rigid.simulated = false;
         
         dongle = newDongle;
+        nextDongleLevel = Random.Range(1, 4);
+        Debug.Log(nextDongleLevel);
 
         // OnGetController 이벤트 호출
         OnGetController?.Invoke(dongle);
