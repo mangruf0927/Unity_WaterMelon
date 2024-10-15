@@ -6,8 +6,13 @@ public class HudCenter : MonoBehaviour
     [SerializeField]    private ScoreData scoreData;
     [SerializeField]    private GameScore gameScore;
 
+    [Header("다음 동글 UI")]
+    [SerializeField]    private DongleCenter dongleCenter;
+    [SerializeField]    private NextDongle nextDongle;
+
     private void Start() 
     {
         scoreData.AddObserver(gameScore);    
+        dongleCenter.AddObserver(nextDongle);
     }
 }

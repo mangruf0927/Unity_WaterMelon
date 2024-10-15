@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DongleCenter : MonoBehaviour
+public class DongleCenter : MonoBehaviour, ISubject
 {
     [Header("동글 Prefab")]
     [SerializeField] private GameObject donglePrefab;
@@ -14,6 +15,8 @@ public class DongleCenter : MonoBehaviour
 
     public delegate void DongleHandler(DongleController controller);
     public event DongleHandler OnGetController;
+
+    public List<IObserver> levelObserverList = new List<IObserver>();
 
     private void Start() 
     {
@@ -35,14 +38,21 @@ public class DongleCenter : MonoBehaviour
         
         dongle = newDongle;
 
-        // 동글이 레벨을 1~4 사이에서 랜덤하게 설정
+        // 동글이 레벨을 1~5 사이에서 랜덤하게 설정
         nextDongleLevel = Random.Range(1, 5);
-        Debug.Log("다음 동글 레벨 : " + nextDongleLevel);       
+        // Debug.Log("다음 동글 레벨 : " + nextDongleLevel);  
+
+        NotifyObservers();     
 
         // OnGetController 이벤트 호출
         OnGetController?.Invoke(dongle);
 
         StartCoroutine(WaitNext(2f));
+    }
+
+    public int GetNextLevel()
+    {
+        return nextDongleLevel;
     }
 
     private IEnumerator WaitNext(float waitTime)
@@ -64,5 +74,30 @@ public class DongleCenter : MonoBehaviour
     public void AddScore(int score)
     {
         scoreData.AddScore(score);
+    }
+
+    // >> 
+    public void AddObserver(IObserver observer)
+    {
+        if (!levelObserverList.Contains(observer))
+        {
+            levelObserverList.Add(observer);
+        }
+    }
+
+    public void RemoveObserver(IObserver observer)
+    {
+        if (levelObserverList.Contains(observer))
+        {
+            levelObserverList.Remove(observer);
+        }
+    }
+
+    public void NotifyObservers()
+    {
+        foreach (IObserver observer in levelObserverList)
+        {
+            observer.Notify(this);
+        }
     }
 }
