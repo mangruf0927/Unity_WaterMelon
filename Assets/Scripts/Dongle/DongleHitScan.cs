@@ -11,6 +11,8 @@ public class DongleHitScan : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
 
     private DongleCenter dongleCenter;
+    private float deadTime = 0;
+
 
     public void SetDongleCenter(DongleCenter center)
     {
@@ -68,6 +70,7 @@ public class DongleHitScan : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Border"))
         {
+            deadTime = 0;
             spriteRenderer.color = Color.white;
         }    
     }
@@ -99,5 +102,8 @@ public class DongleHitScan : MonoBehaviour
         }
 
         spriteRenderer.color = targetColor;
+
+        yield return new WaitForSeconds(3.0f); 
+        dongleCenter.GameOver();
     }
 }

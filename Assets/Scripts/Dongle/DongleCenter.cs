@@ -94,6 +94,11 @@ public class DongleCenter : MonoBehaviour, ISubject
         scoreData.AddScore(score);
     }
 
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
+
     // >> 
     public void AddObserver(IObserver observer)
     {
