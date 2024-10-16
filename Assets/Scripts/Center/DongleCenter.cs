@@ -7,8 +7,8 @@ public class DongleCenter : MonoBehaviour, ISubject
     [Header("동글 Prefab")]
     [SerializeField] private GameObject donglePrefab;
 
-    [Header("동글 Score")]
-    [SerializeField] private ScoreData scoreData;
+    [Header("GameCenter")]
+    [SerializeField] private GameCenter gameCenter;
 
     private DongleController dongle;
     private int nextDongleLevel;
@@ -25,11 +25,9 @@ public class DongleCenter : MonoBehaviour, ISubject
 
     public void InitializeCenter()
     {
-        // 오브젝트 풀 초기화
+        // 동글이 초기화 및 게임 상태 초기화
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
-
-        // 게임 점수 초기화
-        scoreData.ResetScore();
+        gameCenter.InitializeGame();
 
         nextDongleLevel = Random.Range(1, 4);
         CreateNextDongle();    
@@ -37,7 +35,14 @@ public class DongleCenter : MonoBehaviour, ISubject
 
     private void CreateNextDongle()
     {
-        DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel, this);
+        // 게임 오버 상태라면 새로운 동글을 만들지 않음
+        if (gameCenter.IsGameOver())
+        {
+            Debug.Log("GAme OVer ㅎㅎ");
+            return;
+        }
+
+        DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel, gameCenter);
         newDongle.transform.position = new Vector3(0, 5f, 0);
         newDongle.rigid.simulated = false;
         
@@ -67,6 +72,13 @@ public class DongleCenter : MonoBehaviour, ISubject
             yield return null;
         }
 
+        // 게임 오버 상태라면 동글을 더 이상 생성하지 않음
+        if (gameCenter.IsGameOver())
+        {
+            Debug.Log("게임 오버 상태 삐빅");
+            yield break;
+        }
+
         yield return new WaitForSeconds(waitTime);
         CreateNextDongle();
     }
@@ -87,16 +99,6 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         StopAllCoroutines(); 
         dongle = null; 
-    }
-
-    public void AddScore(int score)
-    {
-        scoreData.AddScore(score);
-    }
-
-    public void GameOver()
-    {
-        Debug.Log("Game Over");
     }
 
     // >> 

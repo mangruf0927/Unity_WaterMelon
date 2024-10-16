@@ -10,13 +10,11 @@ public class DongleHitScan : MonoBehaviour
     [Header("동글이 스프라이트")]
     [SerializeField] SpriteRenderer spriteRenderer;
 
-    private DongleCenter dongleCenter;
-    private float deadTime = 0;
+    private GameCenter gameCenter;
 
-
-    public void SetDongleCenter(DongleCenter center)
+    public void SetGameCenter(GameCenter center)
     {
-        dongleCenter = center;
+        gameCenter = center;
     }
 
     // 동글 - 동글 충돌
@@ -55,7 +53,7 @@ public class DongleHitScan : MonoBehaviour
         ObjectPool.Instance.ReturnToPool(gameObject, PoolTypeEnums.DONGLE);
 
         // 새로운 동글이 생성 (레벨 + 1)
-        DongleController newDongle = DongleFactory.CreateDongle(gameObject ,dongleController.dongleLevel + 1, dongleCenter);
+        DongleController newDongle = DongleFactory.CreateDongle(gameObject ,dongleController.dongleLevel + 1, gameCenter);
         newDongle.transform.position = collisionPoint; // 충돌 지점에 생성
         newDongle.rigid.simulated = true;
     }
@@ -63,14 +61,13 @@ public class DongleHitScan : MonoBehaviour
     private void AddScore(int level)
     {
         int score = (level * (level + 1)) / 2;
-        dongleCenter.AddScore(score);
+        gameCenter.AddScore(score);
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Border"))
         {
-            deadTime = 0;
             spriteRenderer.color = Color.white;
         }    
     }
@@ -104,6 +101,6 @@ public class DongleHitScan : MonoBehaviour
         spriteRenderer.color = targetColor;
 
         yield return new WaitForSeconds(3.0f); 
-        dongleCenter.GameOver();
+        gameCenter.GameOver();
     }
 }

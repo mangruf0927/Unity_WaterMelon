@@ -118,6 +118,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &81639894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81639896}
+  - component: {fileID: 81639895}
+  m_Layer: 0
+  m_Name: GameCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &81639895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81639894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31113fe599ba478da55f056caa162c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreData: {fileID: 11400000, guid: 1f6d0a3ee334640239f5a2f695a36f40, type: 2}
+--- !u!4 &81639896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81639894}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &84620122
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   donglePrefab: {fileID: 7392450938455632116, guid: 87fd12e3dfb874e94a8f44268451ca4e, type: 3}
-  scoreData: {fileID: 11400000, guid: 1f6d0a3ee334640239f5a2f695a36f40, type: 2}
+  gameCenter: {fileID: 81639895}
 --- !u!4 &84620124
 Transform:
   m_ObjectHideFlags: 0
@@ -593,7 +638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 341457457}
   m_Layer: 0
-  m_Name: === Dongle ===
+  m_Name: === Center ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3302,11 +3347,12 @@ SceneRoots:
   - {fileID: 2038547620}
   - {fileID: 297839537}
   - {fileID: 341457457}
+  - {fileID: 81639896}
   - {fileID: 84620124}
+  - {fileID: 1825378753}
   - {fileID: 2073111009}
   - {fileID: 1098405563}
   - {fileID: 1839190895}
-  - {fileID: 1825378753}
   - {fileID: 1948813764}
   - {fileID: 1539444409}
   - {fileID: 568638324}
