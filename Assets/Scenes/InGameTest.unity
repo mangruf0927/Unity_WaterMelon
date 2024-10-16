@@ -262,7 +262,8 @@ GameObject:
   - component: {fileID: 202209147}
   - component: {fileID: 202209148}
   - component: {fileID: 202209149}
-  m_Layer: 0
+  - component: {fileID: 202209150}
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +330,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 4507162162781784842, guid: 188cd4bab5e3e4ecfa374a920b71d9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -385,6 +386,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 7.5, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &202209150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202209146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7aaa38b18814d5ebd98150816f5320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 202209148}
 --- !u!1 &217464070
 GameObject:
   m_ObjectHideFlags: 0

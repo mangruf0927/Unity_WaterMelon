@@ -47,7 +47,7 @@ public class DongleCenter : MonoBehaviour, ISubject
         // OnGetController 이벤트 호출
         OnGetController?.Invoke(dongle);
 
-        StartCoroutine(WaitNext(2f));
+        StartCoroutine(WaitNext(1f));
     }
 
     public int GetNextLevel()
