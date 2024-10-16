@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dongleController: {fileID: 1259296487041561442}
+  spriteRenderer: {fileID: 3348006415624896042}
 --- !u!114 &1259296487041561442
 MonoBehaviour:
   m_ObjectHideFlags: 0

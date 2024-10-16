@@ -24,7 +24,6 @@ public class Border : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Dongle"))
         {
             collisionTime += Time.deltaTime; // 충돌 시간이 증가
-            Debug.Log(collisionTime);
 
             if(collisionTime >= 1f && !isBlink)
             {
