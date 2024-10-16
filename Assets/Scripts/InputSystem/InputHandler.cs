@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputHandler : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)  // 터치가 하나 이상 있는지 확인
+        if (Input.touchCount > 0 && !IsClickUI())  // 터치가 하나 이상 있는지 확인
         {
             Touch touch = Input.GetTouch(0);  // 첫 번째 터치 가져오기
 
@@ -33,23 +34,38 @@ public class InputHandler : MonoBehaviour
             }
         }
         
-        #if UNITY_EDITOR        
-        // 마우스 클릭 시작 시
-        if (Input.GetMouseButtonDown(0))
-        {
-            OnTouchStart?.Invoke(true);  // 마우스 클릭 시작 시 isTouch = true 전달
-        }
-        // 마우스 클릭 유지 중일 때
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            OnTouchStay?.Invoke(mousePosition);
-        }
-        // 마우스 클릭 끝났을 때
-        if (Input.GetMouseButtonUp(0))
-        {
-            OnTouchEnd?.Invoke(false);  // 마우스 클릭 끝날 때 isTouch = false 전달
+        #if UNITY_EDITOR       
+        if(!IsClickUI())
+        { 
+            // 마우스 클릭 시작 시
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnTouchStart?.Invoke(true);  // 마우스 클릭 시작 시 isTouch = true 전달
+            }
+            // 마우스 클릭 유지 중일 때
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                OnTouchStay?.Invoke(mousePosition);
+            }
+            // 마우스 클릭 끝났을 때
+            if (Input.GetMouseButtonUp(0))
+            {
+                OnTouchEnd?.Invoke(false);  // 마우스 클릭 끝날 때 isTouch = false 전달
+            }
         }
         #endif
+    }
+
+    // UI 위에서 터치 또는 클릭이 이루어졌는지 확인
+    private bool IsClickUI()
+    {
+        // 모바일일 경우
+        if (Input.touchCount > 0)
+        {
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+        }
+        // PC(에디터)일 경우
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }

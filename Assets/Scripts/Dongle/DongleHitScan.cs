@@ -48,7 +48,7 @@ public class DongleHitScan : MonoBehaviour
         // 점수 계산
         AddScore(dongleController.dongleLevel);
 
-        // 두 동글이를 제거
+        // 두 동글이를 제거 (Pool에 반환)
         ObjectPool.Instance.ReturnToPool(otherDongle.gameObject, PoolTypeEnums.DONGLE);
         ObjectPool.Instance.ReturnToPool(gameObject, PoolTypeEnums.DONGLE);
 
@@ -56,8 +56,6 @@ public class DongleHitScan : MonoBehaviour
         DongleController newDongle = DongleFactory.CreateDongle(gameObject ,dongleController.dongleLevel + 1, dongleCenter);
         newDongle.transform.position = collisionPoint; // 충돌 지점에 생성
         newDongle.rigid.simulated = true;
-
-        // Debug.Log(collisionPoint + "에 " + (dongleController.dongleLevel + 1) + "레벨 동글 생성");
     }
 
     private void AddScore(int level)
@@ -92,12 +90,10 @@ public class DongleHitScan : MonoBehaviour
 
     private IEnumerator ChangeColor(Color targetColor)
     {
-        Color currentColor = spriteRenderer.color;
         float timeElapsed = 0;
-
         while (timeElapsed < 1.0f)
         {
-            spriteRenderer.color = Color.Lerp(currentColor, targetColor, timeElapsed);
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, targetColor, timeElapsed);
             timeElapsed += Time.deltaTime * 1.5f; 
             yield return null; 
         }

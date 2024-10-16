@@ -20,6 +20,11 @@ public class DongleCenter : MonoBehaviour, ISubject
 
     private void Start() 
     {
+        InitializeCenter();  
+    }
+
+    public void InitializeCenter()
+    {
         // 오브젝트 풀 초기화
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
 
@@ -69,6 +74,19 @@ public class DongleCenter : MonoBehaviour, ISubject
     public void DropDongle()
     {
         dongle = null;
+    }
+
+    public void ResetDongles()
+    {
+        DongleController[] dongleList = FindObjectsByType<DongleController>(FindObjectsSortMode.None);
+        
+        for (int i = 0; i < dongleList.Length; i++)
+        {
+            ObjectPool.Instance.ReturnToPool(dongleList[i].gameObject, PoolTypeEnums.DONGLE);
+        }
+
+        StopAllCoroutines(); 
+        dongle = null; 
     }
 
     public void AddScore(int score)

@@ -6,7 +6,7 @@ public class Border : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Coroutine blinkCoroutine;
-    private float collisionTime = 0;
+    private float timeElapsed = 0;
     private int dongleCount = 0;
     private bool isBlink = false;
 
@@ -23,9 +23,9 @@ public class Border : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Dongle"))
         {
-            collisionTime += Time.deltaTime; // 충돌 시간이 증가
+            timeElapsed += Time.deltaTime; // 충돌 시간이 증가
 
-            if(collisionTime >= 1f && !isBlink)
+            if(timeElapsed >= 1f && !isBlink)
             {
                 isBlink = true;
                 blinkCoroutine = StartCoroutine(BlinkEffect(0.5f));
@@ -49,7 +49,7 @@ public class Border : MonoBehaviour
 
                 isBlink = false;
                 spriteRenderer.color = Color.black;
-                collisionTime = 0;
+                timeElapsed = 0;
             }
         }
     }
