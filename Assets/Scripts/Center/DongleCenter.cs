@@ -10,6 +10,9 @@ public class DongleCenter : MonoBehaviour, ISubject
     [Header("GameCenter")]
     [SerializeField] private GameCenter gameCenter;
 
+    [Header("Guide Line")]
+    [SerializeField] private GuideLine guideLine;
+
     private DongleController dongle;
     private int nextDongleLevel;
 
@@ -43,10 +46,13 @@ public class DongleCenter : MonoBehaviour, ISubject
         }
 
         DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel, gameCenter);
-        newDongle.transform.position = new Vector3(0, 5f, 0);
+        newDongle.AddObserver(guideLine);
+        newDongle.SetDonglePosition(new Vector2(0, 5f));
         newDongle.rigid.simulated = false;
-        
+
         dongle = newDongle;
+
+        guideLine.EnableLine(true);
 
         // 동글이 레벨을 1~5 사이에서 랜덤하게 설정
         nextDongleLevel = Random.Range(1, 5);
@@ -80,11 +86,14 @@ public class DongleCenter : MonoBehaviour, ISubject
         }
 
         yield return new WaitForSeconds(waitTime);
+
         CreateNextDongle();
     }
 
     public void DropDongle()
     {
+        dongle.RemoveObserver(guideLine);
+        guideLine.EnableLine(false);
         dongle = null;
     }
 

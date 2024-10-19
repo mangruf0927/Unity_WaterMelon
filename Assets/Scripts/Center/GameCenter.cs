@@ -9,7 +9,8 @@ public class GameCenter : MonoBehaviour
 
     private void Start() 
     {
-
+        // 프레임(FPS) 설정 속성 
+        Application.targetFrameRate = 60;    
     }
 
     public void InitializeGame()

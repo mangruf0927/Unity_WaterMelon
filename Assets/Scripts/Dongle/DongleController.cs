@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DongleController : MonoBehaviour
+public class DongleController : MonoBehaviour, ISubject
 {
     [SerializeField]    public Rigidbody2D rigid;
     [SerializeField]    private CircleCollider2D dongleCollider;
     [SerializeField]    private Animator animator;
-
+    
     public int dongleLevel;
     public int dongleMaxLevel;
     public bool isMerge = false;
@@ -13,9 +14,14 @@ public class DongleController : MonoBehaviour
     private Vector2 donglePosition;
     private bool isTouch = false;
 
+    public List<IObserver> lineObserverList = new List<IObserver>();
+
+
     private void OnEnable() 
     {
         isMerge = false;
+
+        NotifyObservers();
     }
 
     public void PlayAnimation(int level)
@@ -32,6 +38,12 @@ public class DongleController : MonoBehaviour
 
             transform.position = Vector2.Lerp(transform.position, donglePosition, 0.2f);
         }
+        else
+        {
+            transform.position = pos;
+        }
+
+        NotifyObservers();
     }
 
     public void TouchDongle(bool isTrue)
@@ -43,6 +55,31 @@ public class DongleController : MonoBehaviour
     {
         isTouch = isTrue;
         rigid.simulated = !isTrue; // 모든 물리 연산 중지
+    }
+
+    // >> 
+    public void AddObserver(IObserver observer)
+    {
+        if (!lineObserverList.Contains(observer))
+        {
+            lineObserverList.Add(observer);
+        }
+    }
+
+    public void RemoveObserver(IObserver observer)
+    {
+        if (lineObserverList.Contains(observer))
+        {
+            lineObserverList.Remove(observer);
+        }
+    }
+
+    public void NotifyObservers()
+    {
+        foreach (IObserver observer in lineObserverList)
+        {
+            observer.Notify(this);
+        }
     }
 }
 
