@@ -4,7 +4,7 @@ public static class DongleFactory
 {
     // private static GameObject donglePrefab;
 
-    public static DongleController CreateDongle(GameObject dongle, int level, GameCenter gameCenter)
+    public static DongleController CreateDongle(GameObject dongle, int level)
     {
         GameObject newDongle = ObjectPool.Instance.GetFromPool(dongle, PoolTypeEnums.DONGLE);  // 새로운 동글이 생성
 
@@ -16,7 +16,6 @@ public static class DongleFactory
 
         // DongleHitScan에 DongleCenter 주입
         DongleHitScan hitScan = dongleController.GetComponent<DongleHitScan>();
-        hitScan.SetGameCenter(gameCenter);
 
         return dongleController;
     }

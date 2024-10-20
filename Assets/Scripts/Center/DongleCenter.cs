@@ -7,14 +7,12 @@ public class DongleCenter : MonoBehaviour, ISubject
     [Header("동글 Prefab")]
     [SerializeField] private GameObject donglePrefab;
 
-    [Header("GameCenter")]
-    [SerializeField] private GameCenter gameCenter;
-
     [Header("Guide Line")]
     [SerializeField] private GuideLine guideLine;
 
     private DongleController dongle;
     private int nextDongleLevel;
+    private bool isGameOver = false;
 
     public delegate void DongleHandler(DongleController controller);
     public event DongleHandler OnGetController;
@@ -30,7 +28,6 @@ public class DongleCenter : MonoBehaviour, ISubject
     {
         // 동글이 초기화 및 게임 상태 초기화
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
-        gameCenter.InitializeGame();
 
         nextDongleLevel = Random.Range(1, 4);
         CreateNextDongle();    
@@ -39,13 +36,13 @@ public class DongleCenter : MonoBehaviour, ISubject
     private void CreateNextDongle()
     {
         // 게임 오버 상태라면 새로운 동글을 만들지 않음
-        if (gameCenter.IsGameOver())
+        if (isGameOver)
         {
             Debug.Log("GAme OVer ㅎㅎ");
             return;
         }
 
-        DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel, gameCenter);
+        DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel);
         newDongle.AddObserver(guideLine);
         newDongle.SetDonglePosition(new Vector2(0, 5f));
         newDongle.rigid.simulated = false;
@@ -79,7 +76,7 @@ public class DongleCenter : MonoBehaviour, ISubject
         }
 
         // 게임 오버 상태라면 동글을 더 이상 생성하지 않음
-        if (gameCenter.IsGameOver())
+        if (isGameOver)
         {
             Debug.Log("게임 오버 상태 삐빅");
             yield break;
@@ -108,6 +105,11 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         StopAllCoroutines(); 
         dongle = null; 
+    }
+
+    public void SetGameOverState(bool gameOver)
+    {
+        isGameOver = gameOver;
     }
 
     // >> 
