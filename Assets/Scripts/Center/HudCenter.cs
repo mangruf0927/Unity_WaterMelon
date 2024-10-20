@@ -10,7 +10,7 @@ public class HudCenter : MonoBehaviour
     [SerializeField]    private DongleCenter dongleCenter;
     [SerializeField]    private NextDongle nextDongle;
 
-    private void Start() 
+    private void Awake() 
     {
         scoreData.AddObserver(gameScore);    
         dongleCenter.AddObserver(nextDongle);

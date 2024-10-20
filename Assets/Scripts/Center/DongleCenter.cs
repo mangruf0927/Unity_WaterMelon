@@ -29,7 +29,7 @@ public class DongleCenter : MonoBehaviour, ISubject
         // 동글이 초기화 및 게임 상태 초기화
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
 
-        nextDongleLevel = Random.Range(1, 4);
+        SetNextDongleLevel();
         CreateNextDongle();    
     }
 
@@ -51,16 +51,19 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         guideLine.EnableLine(true);
 
-        // 동글이 레벨을 1~5 사이에서 랜덤하게 설정
-        nextDongleLevel = Random.Range(1, 5);
-        // Debug.Log("다음 동글 레벨 : " + nextDongleLevel);  
-
-        NotifyObservers();     
+        SetNextDongleLevel();
 
         // OnGetController 이벤트 호출
         OnGetController?.Invoke(dongle);
 
         StartCoroutine(WaitNext(1f));
+    }
+
+    private void SetNextDongleLevel()
+    {
+        // 동글이 레벨을 1~5 사이에서 랜덤하게 설정
+        nextDongleLevel = Random.Range(1, 5);
+        NotifyObservers(); 
     }
 
     public int GetNextLevel()

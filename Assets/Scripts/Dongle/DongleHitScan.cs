@@ -10,6 +10,10 @@ public class DongleHitScan : MonoBehaviour
     [Header("동글이 스프라이트")]
     [SerializeField] SpriteRenderer spriteRenderer;
 
+    private Coroutine gameOverRoutine;
+    private float elapsedTime = 0f;
+    private bool isTouchingBorder;
+
     // 동글 - 동글 충돌
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -21,6 +25,9 @@ public class DongleHitScan : MonoBehaviour
                 !dongleController.isMerge && !dongle.isMerge &&
                 dongleController.dongleLevel < dongleController.dongleMaxLevel)
             {
+                if(gameOverRoutine != null)
+                    StopCoroutine(gameOverRoutine);
+
                 if (dongleController.GetInstanceID() < dongle.GetInstanceID())
                 {
                     MergeDongles(dongle, other.contacts[0].point);
@@ -57,43 +64,63 @@ public class DongleHitScan : MonoBehaviour
         DongleEvents.MergeDongle(level);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    // 동글 - GameOver Area 충돌
+    private void OnTriggerStay2D(Collider2D other) 
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Border"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("GameOver") && !isTouchingBorder)
         {
-            spriteRenderer.color = Color.white;
-        }    
+            if (dongleController.rigid.simulated == true)
+            {
+                elapsedTime += Time.deltaTime;
+
+                // 일정 시간 이상 닿아있을 때 색상을 변경
+                if (elapsedTime >= 0.5f && gameOverRoutine == null)
+                {
+                    gameOverRoutine = StartCoroutine(ChangeColor(Color.red));
+                }
+            }
+        }
     }
 
-    // 동글 - Border 충돌
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Border"))
+        {
+            isTouchingBorder = true;
+
+            if (dongleController.rigid.simulated == true)
+            {
+                if (gameOverRoutine != null)
+                {
+                    StopCoroutine(gameOverRoutine);
+                    gameOverRoutine = null;  // 코루틴을 멈춘 후 null로 초기화
+                    spriteRenderer.color = Color.white;
+                }
+                // 충돌 시간 초기화
+                elapsedTime = 0f;
+            }
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other) 
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Border"))
         {
-            if(transform.position.y > other.transform.position.y)
-            {
-                StartCoroutine(ChangeColor(Color.red)); 
-            }
-            else
-            {
-                spriteRenderer.color = Color.white;
-            }
-        }    
+            isTouchingBorder = false;
+        }
     }
 
     private IEnumerator ChangeColor(Color targetColor)
     {
-        float timeElapsed = 0;
-        while (timeElapsed < 1.0f)
+        float colorTime = 0;
+        while (colorTime < 5f)
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, targetColor, timeElapsed);
-            timeElapsed += Time.deltaTime * 1.5f; 
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, targetColor, colorTime / 5f);
+            colorTime += Time.deltaTime; 
             yield return null; 
         }
 
         spriteRenderer.color = targetColor;
-
-        yield return new WaitForSeconds(3.0f); 
         DongleEvents.GameOver();
     }
 }
