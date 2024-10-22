@@ -10,6 +10,9 @@ public class DongleCenter : MonoBehaviour, ISubject
     [Header("Guide Line")]
     [SerializeField] private GuideLine guideLine;
 
+    [Header("Particle 프리팹")]
+    [SerializeField] private GameObject particlePrefab;
+
     private DongleController dongle;
     private int nextDongleLevel;
     private bool isGameOver = false;
@@ -22,13 +25,19 @@ public class DongleCenter : MonoBehaviour, ISubject
     private void Start() 
     {
         InitializeCenter();  
+
+        DongleEvents.OnCreateParticle += CreateParticle;
     }
 
     public void InitializeCenter()
     {
-        // 동글이 초기화 및 게임 상태 초기화
+        // 동글이 초기화
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
 
+        // 파티클 초기화
+        ObjectPool.Instance.InitializePool(10, particlePrefab, PoolTypeEnums.PARTICLE);
+
+        // 게임 상태 초기화
         SetNextDongleLevel();
         CreateNextDongle();    
     }
@@ -113,6 +122,15 @@ public class DongleCenter : MonoBehaviour, ISubject
     public void SetGameOverState(bool gameOver)
     {
         isGameOver = gameOver;
+    }
+
+    public void CreateParticle(Vector2 position, int level)
+    {
+        GameObject particle = ObjectPool.Instance.GetFromPool(particlePrefab, PoolTypeEnums.PARTICLE);
+        particle.transform.position = position;
+
+        MergeEffect mergeEffect = particle.GetComponent<MergeEffect>();
+        mergeEffect.SetProperties(level);
     }
 
     // >> 

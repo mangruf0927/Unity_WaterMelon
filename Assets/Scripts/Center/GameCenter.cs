@@ -8,6 +8,7 @@ public class GameCenter : MonoBehaviour
     [Header("Dongle Center")]
     [SerializeField]    private DongleCenter dongleCenter;
 
+
     private bool isGameOver = false;
 
     private void Start() 

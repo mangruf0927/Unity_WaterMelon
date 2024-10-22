@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   donglePrefab: {fileID: 7392450938455632116, guid: 87fd12e3dfb874e94a8f44268451ca4e, type: 3}
   guideLine: {fileID: 1813083811}
+  particlePrefab: {fileID: 1256364834415685819, guid: 6a3828caa07dd4a978f5997d369f8dd1, type: 3}
 --- !u!4 &84620124
 Transform:
   m_ObjectHideFlags: 0

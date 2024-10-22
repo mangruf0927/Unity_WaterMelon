@@ -56,6 +56,8 @@ public class DongleHitScan : MonoBehaviour
         DongleController newDongle = DongleFactory.CreateDongle(gameObject ,dongleController.dongleLevel + 1);
         newDongle.transform.position = collisionPoint; // 충돌 지점에 생성
         newDongle.rigid.simulated = true;
+
+        DongleEvents.CreateParticle(collisionPoint, dongleController.dongleLevel + 1);
     }
 
     private void AddScore(int level)
