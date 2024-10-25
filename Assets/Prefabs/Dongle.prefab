@@ -206,6 +206,7 @@ MonoBehaviour:
   rigid: {fileID: 3714564906565083524}
   dongleCollider: {fileID: 904527537976300821}
   animator: {fileID: 1782614168995906606}
+  sprite: {fileID: 3348006415624896042}
   dongleLevel: 0
   dongleMaxLevel: 11
   isMerge: 0
