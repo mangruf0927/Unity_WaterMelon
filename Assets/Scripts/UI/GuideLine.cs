@@ -29,7 +29,7 @@ public class GuideLine : MonoBehaviour, IObserver
     {
         if(subject is DongleController dongle)
         {
-            DrawLine(dongle.transform.position, new Vector2(dongle.transform.position.x, -3.5f));
+            DrawLine(dongle.transform.position, new Vector2(dongle.transform.position.x, GameConstants.GROUND_POSITION));
         }
     }
 }

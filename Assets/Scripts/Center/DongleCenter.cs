@@ -53,7 +53,7 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         DongleController newDongle = DongleFactory.CreateDongle(donglePrefab, nextDongleLevel);
         newDongle.AddObserver(guideLine);
-        newDongle.SetDonglePosition(new Vector2(0, 5f));
+        newDongle.SetDonglePosition(new Vector2(0, GameConstants.DONGLE_HEIGHT));
         newDongle.rigid.simulated = false;
 
         dongle = newDongle;

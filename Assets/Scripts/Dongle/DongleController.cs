@@ -33,8 +33,8 @@ public class DongleController : MonoBehaviour, ISubject
     {
         if(isTouch)
         {
-            donglePosition.x = Mathf.Clamp(pos.x, -4.5f + transform.localScale.x / 2f, 4.5f - transform.localScale.x / 2f);
-            donglePosition.y = 5f;
+            donglePosition.x = Mathf.Clamp(pos.x, GameConstants.LEFT_BOUNDARY + transform.localScale.x / 2f, GameConstants.RIGHT_BOUNDARY - transform.localScale.x / 2f);
+            donglePosition.y = GameConstants.DONGLE_HEIGHT;
 
             transform.position = Vector2.Lerp(transform.position, donglePosition, 0.2f);
         }
