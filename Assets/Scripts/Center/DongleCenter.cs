@@ -35,7 +35,7 @@ public class DongleCenter : MonoBehaviour, ISubject
         ObjectPool.Instance.InitializePool(20, donglePrefab, PoolTypeEnums.DONGLE);
 
         // 파티클 초기화
-        ObjectPool.Instance.InitializePool(10, particlePrefab, PoolTypeEnums.PARTICLE);
+        ObjectPool.Instance.InitializePool(5, particlePrefab, PoolTypeEnums.PARTICLE);
 
         // 게임 상태 초기화
         SetNextDongleLevel();
