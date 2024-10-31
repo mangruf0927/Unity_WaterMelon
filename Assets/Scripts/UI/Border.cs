@@ -59,7 +59,7 @@ public class Border : MonoBehaviour
         {
             spriteRenderer.color = Color.red; 
             yield return new WaitForSeconds(time); 
-            spriteRenderer.color = Color.black; 
+            spriteRenderer.color = Color.White; 
             yield return new WaitForSeconds(time);
         } 
     }
