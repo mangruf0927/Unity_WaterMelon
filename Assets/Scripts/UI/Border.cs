@@ -48,7 +48,7 @@ public class Border : MonoBehaviour
                 }
 
                 isBlink = false;
-                spriteRenderer.color = Color.black;
+                spriteRenderer.color = Color.white;
                 timeElapsed = 0;
             }
         }
@@ -59,7 +59,7 @@ public class Border : MonoBehaviour
         {
             spriteRenderer.color = Color.red; 
             yield return new WaitForSeconds(time); 
-            spriteRenderer.color = Color.White; 
+            spriteRenderer.color = Color.white; 
             yield return new WaitForSeconds(time);
         } 
     }
