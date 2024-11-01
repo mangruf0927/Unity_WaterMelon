@@ -116,7 +116,10 @@ public class DongleCenter : MonoBehaviour, ISubject
         }
 
         StopAllCoroutines(); 
-        dongle = null; 
+
+        // 게임 상태 초기화
+        SetNextDongleLevel();
+        CreateNextDongle();    
     }
 
     public void SetGameOverState(bool gameOver)

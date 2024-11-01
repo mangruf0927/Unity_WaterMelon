@@ -19,6 +19,7 @@ public class GameCenter : MonoBehaviour
 
         DongleEvents.OnMerge += AddScore;
         DongleEvents.OnGameOver += GameOver;
+        DongleEvents.OnRestart += RestartGame;
     }
 
     public void InitializeGame()
@@ -41,11 +42,16 @@ public class GameCenter : MonoBehaviour
         {
             isGameOver = true;
             dongleCenter.SetGameOverState(true);
-
-            ResetDongles();
+            dongleCenter.ResetDongles();
 
             Debug.Log("게임 오버 !!!!!!");
         }
+    }
+
+    public void RestartGame()
+    {
+        dongleCenter.ResetDongles();
+        scoreData.ResetScore();
     }
 
     public bool IsGameOver()
@@ -53,15 +59,4 @@ public class GameCenter : MonoBehaviour
         return isGameOver;
     }
 
-    public void ResetDongles()
-    {
-        DongleController[] dongleList = FindObjectsByType<DongleController>(FindObjectsSortMode.None);
-        
-        for (int i = 0; i < dongleList.Length; i++)
-        {
-            ObjectPool.Instance.ReturnToPool(dongleList[i].gameObject, PoolTypeEnums.DONGLE);
-        }
-
-        StopAllCoroutines(); 
-    }
 }
