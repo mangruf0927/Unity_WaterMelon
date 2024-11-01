@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreData: {fileID: 11400000, guid: 1f6d0a3ee334640239f5a2f695a36f40, type: 2}
   dongleCenter: {fileID: 84620123}
+  gameOverUI: {fileID: 0}
 --- !u!4 &81639896
 Transform:
   m_ObjectHideFlags: 0
@@ -2032,6 +2033,7 @@ GameObject:
   - component: {fileID: 528611764}
   - component: {fileID: 528611766}
   - component: {fileID: 528611765}
+  - component: {fileID: 528611767}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -2098,6 +2100,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528611763}
   m_CullTransparentMesh: 1
+--- !u!114 &528611767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528611763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fe403807e944e298e8421dbbe1ce28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
 --- !u!1 &568620142
 GameObject:
   m_ObjectHideFlags: 0
@@ -3295,6 +3310,7 @@ GameObject:
   - component: {fileID: 914447713}
   - component: {fileID: 914447715}
   - component: {fileID: 914447714}
+  - component: {fileID: 914447716}
   m_Layer: 5
   m_Name: RankUI
   m_TagString: Untagged
@@ -3363,6 +3379,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914447712}
   m_CullTransparentMesh: 1
+--- !u!114 &914447716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914447712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62436d519644a47a9b194d7afb7c3ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1026293790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,7 +3403,6 @@ GameObject:
   - component: {fileID: 1026293795}
   - component: {fileID: 1026293794}
   - component: {fileID: 1026293793}
-  - component: {fileID: 1026293792}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -3402,18 +3429,6 @@ RectTransform:
   m_AnchoredPosition: {x: 230, y: -615}
   m_SizeDelta: {x: 460, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1026293792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026293790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef03f98e827874af1809fd7a2788a45f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1026293793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5369,7 +5384,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1540022445}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 914447716}
+        m_TargetAssemblyTypeName: RankPopUp, Assembly-CSharp
+        m_MethodName: OnClickCancle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1540022445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6266,7 +6293,6 @@ GameObject:
   - component: {fileID: 1839841786}
   - component: {fileID: 1839841785}
   - component: {fileID: 1839841784}
-  - component: {fileID: 1839841783}
   m_Layer: 5
   m_Name: 'RestartButton '
   m_TagString: Untagged
@@ -6293,18 +6319,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 460, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1839841783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839841781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef03f98e827874af1809fd7a2788a45f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1839841784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6349,8 +6363,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1839841783}
-        m_TargetAssemblyTypeName: Restart, Assembly-CSharp
+      - m_Target: {fileID: 528611767}
+        m_TargetAssemblyTypeName: GameOverPopUp, Assembly-CSharp
         m_MethodName: OnClickRestart
         m_Mode: 1
         m_Arguments:

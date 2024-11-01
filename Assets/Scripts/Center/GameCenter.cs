@@ -8,6 +8,9 @@ public class GameCenter : MonoBehaviour
     [Header("Dongle Center")]
     [SerializeField]    private DongleCenter dongleCenter;
 
+    [Header("GameOverUI")]
+    [SerializeField]    private GameObject gameOverUI;
+
 
     private bool isGameOver = false;
 
@@ -42,9 +45,8 @@ public class GameCenter : MonoBehaviour
         {
             isGameOver = true;
             dongleCenter.SetGameOverState(true);
-            dongleCenter.ResetDongles();
 
-            Debug.Log("게임 오버 !!!!!!");
+            gameOverUI.SetActive(true);
         }
     }
 
