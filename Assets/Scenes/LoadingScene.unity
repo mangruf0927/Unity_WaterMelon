@@ -850,7 +850,7 @@ MonoBehaviour:
   - {fileID: 752723936}
   textDuration: 0.2
   dotDuration: 0.3
-  nextScene: 0
+  nextScene: 1
 --- !u!1 &984891925
 GameObject:
   m_ObjectHideFlags: 0

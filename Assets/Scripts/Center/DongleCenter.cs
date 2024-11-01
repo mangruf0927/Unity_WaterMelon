@@ -47,7 +47,7 @@ public class DongleCenter : MonoBehaviour, ISubject
         // 게임 오버 상태라면 새로운 동글을 만들지 않음
         if (isGameOver)
         {
-            Debug.Log("GAme OVer ㅎㅎ");
+            Debug.Log("GAme OVer");
             return;
         }
 
@@ -119,7 +119,8 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         // 게임 상태 초기화
         SetNextDongleLevel();
-        CreateNextDongle();    
+        CreateNextDongle();
+        isGameOver = false;    
     }
 
     public void SetGameOverState(bool gameOver)
