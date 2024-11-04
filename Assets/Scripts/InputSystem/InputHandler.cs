@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
@@ -18,18 +17,18 @@ public class InputHandler : MonoBehaviour
             Touch touch = Input.GetTouch(0);  // 첫 번째 터치 가져오기
 
             // 터치 시작 상태일 때
-            if (touch.phase == UnityEngine.TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began)
             {
                 OnTouchStart?.Invoke(true);  
             }
             // 터치가 유지되거나 움직였을 때
-            if (touch.phase == UnityEngine.TouchPhase.Moved || touch.phase == UnityEngine.TouchPhase.Stationary)
+            if (touch.phase == TouchPhase.Moved || touch.phase == UnityEngine.TouchPhase.Stationary)
             {
                 Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                 OnTouchStay?.Invoke(touchPosition);
             }
             // 터치가 끝났을 때
-            if (touch.phase == UnityEngine.TouchPhase.Ended)
+            if (touch.phase == TouchPhase.Ended)
             {
                 OnTouchEnd?.Invoke(false);  
             }
@@ -66,7 +65,10 @@ public class InputHandler : MonoBehaviour
         {
             return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
         }
+        #if UNITY_EDITOR
+        
         // PC(에디터)일 경우
         return EventSystem.current.IsPointerOverGameObject();
+        #endif
     }
 }
