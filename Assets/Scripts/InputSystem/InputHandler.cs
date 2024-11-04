@@ -35,27 +35,27 @@ public class InputHandler : MonoBehaviour
             }
         }
         
-        // #if UNITY_EDITOR       
-        // if(!IsClickUI())
-        // { 
-        //     // 마우스 클릭 시작 시
-        //     if (Input.GetMouseButtonDown(0))
-        //     {
-        //         OnTouchStart?.Invoke(true);  // 마우스 클릭 시작 시 isTouch = true 전달
-        //     }
-        //     // 마우스 클릭 유지 중일 때
-        //     if (Input.GetMouseButton(0))
-        //     {
-        //         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //         OnTouchStay?.Invoke(mousePosition);
-        //     }
-        //     // 마우스 클릭 끝났을 때
-        //     if (Input.GetMouseButtonUp(0))
-        //     {
-        //         OnTouchEnd?.Invoke(false);  // 마우스 클릭 끝날 때 isTouch = false 전달
-        //     }
-        // }
-        // #endif
+        #if UNITY_EDITOR       
+        if(!IsClickUI())
+        { 
+            // 마우스 클릭 시작 시
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnTouchStart?.Invoke(true);  // 마우스 클릭 시작 시 isTouch = true 전달
+            }
+            // 마우스 클릭 유지 중일 때
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                OnTouchStay?.Invoke(mousePosition);
+            }
+            // 마우스 클릭 끝났을 때
+            if (Input.GetMouseButtonUp(0))
+            {
+                OnTouchEnd?.Invoke(false);  // 마우스 클릭 끝날 때 isTouch = false 전달
+            }
+        }
+        #endif
     }
 
     // UI 위에서 터치 또는 클릭이 이루어졌는지 확인
