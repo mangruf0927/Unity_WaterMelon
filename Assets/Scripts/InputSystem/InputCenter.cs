@@ -32,7 +32,11 @@ public class InputCenter : MonoBehaviour
     private void StayTouch(Vector2 position)
     {
         if(dongleController != null)
-            dongleController.SetDonglePosition(new Vector2(position.x, GameConstants.DONGLE_HEIGHT));
+        {
+            float dongleX = Mathf.Clamp(position.x, GameConstants.LEFT_BOUNDARY + dongleController.sprite.bounds.size.x / 2f, GameConstants.RIGHT_BOUNDARY - dongleController.sprite.bounds.size.x / 2f);
+            Vector2 donglePosition = new Vector2(dongleX, GameConstants.DONGLE_HEIGHT);
+            
+            dongleController.SetDonglePosition(donglePosition);        }
     }
 
     private void EndTouch(bool isTouch)

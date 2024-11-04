@@ -6,13 +6,12 @@ public class DongleController : MonoBehaviour, ISubject
     [SerializeField]    public Rigidbody2D rigid;
     [SerializeField]    private CircleCollider2D dongleCollider;
     [SerializeField]    private Animator animator;
-    [SerializeField]    private SpriteRenderer sprite;
+    [SerializeField]    public SpriteRenderer sprite;
     
     public int dongleLevel;
     public int dongleMaxLevel;
     public bool isMerge = false;
     
-    private Vector2 donglePosition;
     private bool isTouch = false;
 
     public List<IObserver> lineObserverList = new List<IObserver>();
@@ -34,10 +33,7 @@ public class DongleController : MonoBehaviour, ISubject
     {
         if(isTouch)
         {
-            donglePosition.x = Mathf.Clamp(pos.x, GameConstants.LEFT_BOUNDARY + sprite.bounds.size.x / 2f, GameConstants.RIGHT_BOUNDARY - sprite.bounds.size.x / 2f);
-            donglePosition.y = GameConstants.DONGLE_HEIGHT;
-
-            transform.position = Vector2.Lerp(transform.position, donglePosition, 0.2f);
+            transform.position = Vector2.Lerp(transform.position, pos, 0.2f);
         }
         else
         {
