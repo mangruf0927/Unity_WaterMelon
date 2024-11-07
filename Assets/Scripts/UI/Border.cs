@@ -10,6 +10,10 @@ public class Border : MonoBehaviour
     private int dongleCount = 0;
     private bool isBlink = false;
 
+    void Start()
+    {
+        DongleEvents.OnGameOver += GameOver;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -62,5 +66,11 @@ public class Border : MonoBehaviour
             spriteRenderer.color = Color.white; 
             yield return new WaitForSeconds(time);
         } 
+    }
+
+    private void GameOver()
+    {
+        StopCoroutine(blinkCoroutine);
+        spriteRenderer.color = Color.white;
     }
 }

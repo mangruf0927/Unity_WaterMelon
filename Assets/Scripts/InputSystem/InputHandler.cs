@@ -16,9 +16,7 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.touchCount > 0)  // 터치가 하나 이상 있는지 확인
         {
-            Touch touch = Input.GetTouch(0);  // 첫 번째 터치 가져오기
-            Debug.Log(EventSystem.current.IsPointerOverGameObject());
-            
+            Touch touch = Input.GetTouch(0);  // 첫 번째 터치 가져오기            
 
             // 터치 시작 상태일 때
             if (touch.phase == TouchPhase.Began)

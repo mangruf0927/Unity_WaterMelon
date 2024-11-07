@@ -52,13 +52,11 @@ public class GameCenter : MonoBehaviour
 
     public void RestartGame()
     {
+        dongleCenter.SetGameOverState(false);
         dongleCenter.ResetDongles();
         scoreData.ResetScore();
-    }
 
-    public bool IsGameOver()
-    {
-        return isGameOver;
+        isGameOver = false;
     }
 
 }

@@ -65,7 +65,7 @@ public class DongleCenter : MonoBehaviour, ISubject
         // OnGetController 이벤트 호출
         OnGetController?.Invoke(dongle);
 
-        StartCoroutine(WaitNext(1f));
+        StartCoroutine(WaitNext(0.5f));
     }
 
     private void SetNextDongleLevel()
@@ -90,7 +90,6 @@ public class DongleCenter : MonoBehaviour, ISubject
         // 게임 오버 상태라면 동글을 더 이상 생성하지 않음
         if (isGameOver)
         {
-            Debug.Log("게임 오버 상태 삐빅");
             yield break;
         }
 
