@@ -20,6 +20,7 @@ public class DongleController : MonoBehaviour, ISubject
     private void OnEnable() 
     {
         isMerge = false;
+        sprite.color = Color.white;
 
         NotifyObservers();
     }

@@ -77,7 +77,7 @@ public class DongleHitScan : MonoBehaviour
                 // 일정 시간 이상 닿아있을 때 색상을 변경
                 if (elapsedTime >= 0.5f && gameOverRoutine == null)
                 {
-                    gameOverRoutine = StartCoroutine(ChangeColor(Color.red));
+                    gameOverRoutine = StartCoroutine(BlinkDongle(Color.red, 0.3f));
                 }
             }
         }
@@ -111,14 +111,19 @@ public class DongleHitScan : MonoBehaviour
         }
     }
 
-    private IEnumerator ChangeColor(Color targetColor)
+    private IEnumerator BlinkDongle(Color targetColor, float time)
     {
         float colorTime = 0;
-        while (colorTime < 5f)
+
+        while (colorTime < 4f)
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, targetColor, colorTime / 5f);
-            colorTime += Time.deltaTime; 
-            yield return null; 
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(time);
+            
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(time);
+            
+            colorTime += time * 2; // 한 번 깜빡일 때 걸린 총 시간을 더해줍니다.
         }
 
         spriteRenderer.color = targetColor;
