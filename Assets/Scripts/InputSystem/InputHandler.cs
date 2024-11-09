@@ -46,5 +46,13 @@ public class InputHandler : MonoBehaviour
                 OnTouchEnd?.Invoke(false);  
             }
         }
+
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            if(Input.GetKey(KeyCode.Escape))
+            {   
+                DongleEvents.ExitGame();
+            }
+        }   
     }
 }

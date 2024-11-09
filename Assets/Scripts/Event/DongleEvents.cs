@@ -8,6 +8,7 @@ public static class DongleEvents
     public delegate void DongleHandler();
     public static event DongleHandler OnGameOver;
     public static event DongleHandler OnRestart;
+    public static event DongleHandler OnGameExit;
 
     public delegate void ParticleHandler(Vector2 position, int level);
     public static event ParticleHandler OnCreateParticle;
@@ -30,5 +31,10 @@ public static class DongleEvents
     public static void Restart()
     {
         OnRestart?.Invoke();
+    }
+
+    public static void ExitGame()
+    {
+        OnGameExit?.Invoke();
     }
 }

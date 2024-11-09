@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InputCenter : MonoBehaviour
 {
-    public InputHandler inputHandler;
-    public DongleCenter dongleCenter;
+    [SerializeField]    private InputHandler inputHandler;
+    [SerializeField]    private DongleCenter dongleCenter;
 
     [SerializeField]    private DongleController dongleController;
 
@@ -20,7 +20,6 @@ public class InputCenter : MonoBehaviour
         inputHandler.OnTouchStart += StartTouch;
         inputHandler.OnTouchStay += StayTouch;
         inputHandler.OnTouchEnd += EndTouch;
-  
     }
 
     private void StartTouch(bool isTouch)

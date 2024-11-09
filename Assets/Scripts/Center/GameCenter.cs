@@ -11,6 +11,9 @@ public class GameCenter : MonoBehaviour
     [Header("GameOverUI")]
     [SerializeField]    private GameObject gameOverUI;
 
+    [Header("GameExitPopUP")]
+    [SerializeField]    private GameObject gameExitUI;
+
 
     private bool isGameOver = false;
 
@@ -23,6 +26,7 @@ public class GameCenter : MonoBehaviour
         DongleEvents.OnMerge += AddScore;
         DongleEvents.OnGameOver += GameOver;
         DongleEvents.OnRestart += RestartGame;
+        DongleEvents.OnGameExit += ExitGame;
     }
 
     public void InitializeGame()
@@ -59,4 +63,8 @@ public class GameCenter : MonoBehaviour
         isGameOver = false;
     }
 
+    public void ExitGame()
+    {
+        gameExitUI.SetActive(true);
+    }
 }
