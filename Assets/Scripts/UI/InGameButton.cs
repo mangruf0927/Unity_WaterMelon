@@ -10,11 +10,15 @@ public class InGameButton : MonoBehaviour
 
     public void OnClickSetting()
     {
+        SoundManager.Instance.PlaySFX("Button");
+
         settingPopUp.SetActive(true);
     }
 
     public void OnClickRank()
     {
+        SoundManager.Instance.PlaySFX("Button");
+        
         rankPopUp.SetActive(true);
     }
 }

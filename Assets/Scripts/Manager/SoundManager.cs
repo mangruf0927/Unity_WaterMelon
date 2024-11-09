@@ -36,7 +36,7 @@ public class SoundManager : Singleton<SoundManager>
         bgmObject.transform.parent = transform;
         bgmSource = bgmObject.AddComponent<AudioSource>();
         bgmSource.loop = true;
-        bgmSource.volume = 0.5f;
+        bgmSource.volume = 0.3f;
 
         // SFX 플레이어 풀 초기화
         GameObject sfxObject = new GameObject("SFX Player");
@@ -47,7 +47,7 @@ public class SoundManager : Singleton<SoundManager>
         {
             sfxSources[i] = sfxObject.AddComponent<AudioSource>();
             sfxSources[i].playOnAwake = false;
-            sfxSources[i].volume = 0.5f;
+            sfxSources[i].volume = 1f;
         }
     }
 

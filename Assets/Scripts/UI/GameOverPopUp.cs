@@ -18,6 +18,8 @@ public class GameOverPopUp : MonoBehaviour
 
     public void OnClickRestart()
     {
+        SoundManager.Instance.PlaySFX("Button");
+
         DongleEvents.Restart();
         gameObject.SetActive(false);
     }

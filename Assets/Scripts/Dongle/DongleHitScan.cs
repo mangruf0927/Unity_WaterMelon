@@ -38,6 +38,8 @@ public class DongleHitScan : MonoBehaviour
 
     private void MergeDongles(DongleController otherDongle, Vector2 collisionPoint)
     {
+        SoundManager.Instance.PlaySFX("Merge");
+
         dongleController.isMerge = true;
         otherDongle.isMerge = true;
 

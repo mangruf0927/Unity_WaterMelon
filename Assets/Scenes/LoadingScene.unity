@@ -1077,6 +1077,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369953688}
   m_CullTransparentMesh: 1
+--- !u!1 &1728983682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728983684}
+  - component: {fileID: 1728983683}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1728983683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728983682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb37b4e640bb4d77a095d067ce547fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmList:
+  - soundName: InGame
+    audioClip: {fileID: 8300000, guid: 8f783cac7cf0443e7b49e0bfaa8a1451, type: 3}
+  sfxList:
+  - soundName: Button
+    audioClip: {fileID: 8300000, guid: b6c37a87a1e05c0418ce0605b46401d8, type: 3}
+  - soundName: Merge
+    audioClip: {fileID: 8300000, guid: 41c5c2b983676c14abbebce504e00d9a, type: 3}
+  channels: 2
+--- !u!4 &1728983684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728983682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1901883694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,4 +1366,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 177852526}
+  - {fileID: 1728983684}
   - {fileID: 2000599365}
