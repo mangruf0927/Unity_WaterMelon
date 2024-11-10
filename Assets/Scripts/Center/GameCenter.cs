@@ -51,6 +51,7 @@ public class GameCenter : MonoBehaviour
             dongleCenter.SetGameOverState(true);
 
             gameOverUI.SetActive(true);
+            scoreData.GameOver();
         }
     }
 

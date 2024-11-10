@@ -5,7 +5,11 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "ScoreData")]
 public class ScoreData : ScriptableObject, ISubject
 {
-    private int currentScore;
+    private int currentScore = 0;
+    private int finalScore = 0;
+    
+    public bool isGameOver = false;
+    
     public List<IObserver> scoreObserverList = new List<IObserver>();
 
     public void AddScore(int score)
@@ -17,6 +21,7 @@ public class ScoreData : ScriptableObject, ISubject
 
     public void ResetScore()
     {
+        isGameOver = false;
         currentScore = 0;
         NotifyObservers();
     }
@@ -24,6 +29,18 @@ public class ScoreData : ScriptableObject, ISubject
     public int GetScore()
     {
         return currentScore;
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        finalScore = currentScore;
+        NotifyObservers();
+    }
+
+    public int GetFinalScore()
+    {
+        return finalScore;
     }
 
     // >> 
