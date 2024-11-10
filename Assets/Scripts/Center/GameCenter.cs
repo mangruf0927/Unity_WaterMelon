@@ -29,13 +29,13 @@ public class GameCenter : MonoBehaviour
         DongleEvents.OnGameExit += ExitGame;
     }
 
-    public void InitializeGame()
+    private void InitializeGame()
     {
         isGameOver = false;
         scoreData.ResetScore();
     } 
 
-    public void AddScore(int score)
+    private void AddScore(int score)
     {
         if(!isGameOver)
         {
@@ -43,7 +43,7 @@ public class GameCenter : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         if(!isGameOver)
         {
@@ -52,10 +52,25 @@ public class GameCenter : MonoBehaviour
 
             gameOverUI.SetActive(true);
             scoreData.GameOver();
+
+            HideNextDongle();
         }
     }
 
-    public void RestartGame()
+    private void HideNextDongle()
+    {
+        DongleController[] dongleList = FindObjectsByType<DongleController>(FindObjectsSortMode.None);
+        
+        for (int i = 0; i < dongleList.Length; i++)
+        {
+            if(dongleList[i].rigid.simulated == false)
+                ObjectPool.Instance.ReturnToPool(dongleList[i].gameObject, PoolTypeEnums.DONGLE);
+        }
+
+        dongleCenter.DrawGuideLine(false);
+    }
+
+    private void RestartGame()
     {
         dongleCenter.SetGameOverState(false);
         dongleCenter.ResetDongles();
@@ -64,7 +79,7 @@ public class GameCenter : MonoBehaviour
         isGameOver = false;
     }
 
-    public void ExitGame()
+    private void ExitGame()
     {
         gameExitUI.SetActive(true);
     }

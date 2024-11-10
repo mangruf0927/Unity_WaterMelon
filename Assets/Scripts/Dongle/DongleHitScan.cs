@@ -77,7 +77,7 @@ public class DongleHitScan : MonoBehaviour
                 elapsedTime += Time.deltaTime;
 
                 // 일정 시간 이상 닿아있을 때 색상을 변경
-                if (elapsedTime >= 0.5f && gameOverRoutine == null)
+                if (elapsedTime >=  1f && gameOverRoutine == null)
                 {
                     gameOverRoutine = StartCoroutine(BlinkDongle(Color.red, 0.3f));
                 }
@@ -110,6 +110,7 @@ public class DongleHitScan : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("Border"))
         {
             isTouchingBorder = false;
+            elapsedTime = 0f; // 충돌 시간 초기화
         }
     }
 
@@ -117,7 +118,7 @@ public class DongleHitScan : MonoBehaviour
     {
         float colorTime = 0;
 
-        while (colorTime < 4f)
+        while (colorTime < 3f)
         {
             spriteRenderer.color = Color.red;
             yield return new WaitForSeconds(time);
@@ -129,6 +130,8 @@ public class DongleHitScan : MonoBehaviour
         }
 
         spriteRenderer.color = targetColor;
+
+        yield return new WaitForSeconds(0.1f);
         DongleEvents.GameOver();
     }
 }

@@ -58,7 +58,7 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         dongle = newDongle;
 
-        guideLine.EnableLine(true);
+        DrawGuideLine(true);
 
         SetNextDongleLevel();
 
@@ -101,7 +101,7 @@ public class DongleCenter : MonoBehaviour, ISubject
     public void DropDongle()
     {
         dongle.RemoveObserver(guideLine);
-        guideLine.EnableLine(false);
+        DrawGuideLine(false);
         dongle = null;
     }
 
@@ -134,6 +134,11 @@ public class DongleCenter : MonoBehaviour, ISubject
 
         MergeEffect mergeEffect = particle.GetComponent<MergeEffect>();
         mergeEffect.SetProperties(level);
+    }
+
+    public void DrawGuideLine(bool isDraw)
+    {
+        guideLine.EnableLine(isDraw);
     }
 
     // >> 
