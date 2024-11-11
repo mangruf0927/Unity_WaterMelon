@@ -100,6 +100,8 @@ public class DongleCenter : MonoBehaviour, ISubject
 
     public void DropDongle()
     {
+        SoundManager.Instance.PlaySFX("Drop");
+
         dongle.RemoveObserver(guideLine);
         DrawGuideLine(false);
         dongle = null;
