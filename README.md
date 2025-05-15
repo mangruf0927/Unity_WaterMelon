@@ -11,6 +11,8 @@ Google 계정 연동을 통해 리더보드에서 다른 플레이어와 경쟁�
 [🎮 플레이 영상](https://www.youtube.com/watch?v=K2gH6z2vjAY)    
 [📄 개발 문서](https://drive.google.com/file/d/15Mg2I1wjyAy22UUDBt-d4SBGXm5E9URf/view?usp=sharing)
 
+<br>
+
 ## 🔧 주요 구현 내용
 - GPGS 연동으로 로그인, 점수 등록, 순위 조회 구현 *(코드 보안상 깃허브에 포함되지 않음)*    
 - Object Pool로 과일, 이펙트 등의 오브젝트 재사용  
