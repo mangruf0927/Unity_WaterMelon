@@ -9,7 +9,7 @@ Google 계정 연동을 통해 리더보드에서 다른 플레이어와 경쟁�
 유니티 버전: **Unity(6000.0.26f1)**
 
 [🎮 플레이 영상](https://www.youtube.com/watch?v=K2gH6z2vjAY)    
-[📄 개발 문서](https://drive.google.com/file/d/15Mg2I1wjyAy22UUDBt-d4SBGXm5E9URf/view?usp=sharing)
+[📄 개발 문서](https://drive.google.com/file/d/15Mg2I1wjyAy22UUDBt-d4SBGXm5E9URf/view?usp=sharing)   
 [📱 다운로드 (Google Play)]([https://play.google.com/store/apps/details?id=com.fffgames.watermelon&hl=ko&gl=kr](https://play.google.com/store/apps/details?id=com.fffgames.watermelon&hl=ko))
 <br>
 
