@@ -2,7 +2,7 @@
 
 <img width="500" alt="수박게임 스크린샷" src="https://github.com/user-attachments/assets/3abd95c5-74cc-49ab-9680-90f5d12cc438" />
 
-**개발 기간** : 2025.03 ~ 2025.05 (개인 프로젝트)  
+**개발 기간** : 2024.10 ~ 2024.12 (개인 프로젝트)  
 **개발 도구** : Unity(6000.0.26f1), C#, Google Play Console  
 
 
